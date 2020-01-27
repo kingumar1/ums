@@ -76,10 +76,12 @@
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+        <div class="container">
+            @include('partials.alerts')
+            <main class="py-4">
+                @yield('content')
+            </main>
+        </div>
     </div>
 </body>
 </html>
