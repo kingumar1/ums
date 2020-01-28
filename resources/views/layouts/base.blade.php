@@ -1,7 +1,7 @@
 @extends('layouts.head')
 @section('title','base')
 @section('body_content')
-    <body>
+    <body class="dark-sidenav">
     <!-- Top Bar Start -->
     <div class="topbar">
 
@@ -12,7 +12,7 @@
                         <img src="{{asset('/assets/images/logo-sm.png')}}" alt="logo-small" class="logo-sm">
                     </span>
                 <span>
-                        <img src="{{asset('/assets/images/logo.png')}}" alt="logo-large" class="logo-lg logo-light">
+                        <img src="{{asset('/assets/images/logo.png')}}" alt="logo-large" class="logo-lg logo-light" style="height: 20px">
                         <img src="{{asset('/assets/images/logo-dark2.png')}}" alt="logo-large" class="logo-lg" style="height: 20px">
                     </span>
             </a>
@@ -113,10 +113,10 @@
                 </li>
 
                 <li>
-                    <a href="javascript: void(0);"><i class="ti-layers-alt"></i><span>Pages</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <a href="javascript: void(0);"><i class="ti-layers-alt"></i><span>Post</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                     <ul class="nav-second-level" aria-expanded="false">
-                        <li class="nav-item"><a class="nav-link" href="../pages/pages-profile.html"><i class="ti-control-record"></i>All Post</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../pages/pages-chat.html"><i class="ti-control-record"></i>Create Post</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('posts')}}"><i class="ti-control-record"></i>All Post</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('post.create')}}"><i class="ti-control-record"></i>Create Post</a></li>
                     </ul>
                 </li>
 
@@ -153,3 +153,4 @@
     </div>
     <!-- end page-wrapper -->
 @endsection
+

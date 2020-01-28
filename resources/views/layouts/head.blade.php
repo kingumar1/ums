@@ -20,6 +20,7 @@
     <link href="{{asset('/assets/css/icons.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('/assets/css/metisMenu.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('/assets/css/style.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('/css/custom.css')}}" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -32,6 +33,8 @@
 <script src="{{asset('/assets/js/metisMenu.min.js')}}"></script>
 <script src="{{asset('/assets/js/waves.min.js')}}"></script>
 <script src="{{asset('/assets/js/jquery.slimscroll.min.js')}}"></script>
+
+@yield('base_script')
 
 <!-- App js -->
 <script src="{{asset('/assets/js/app.js')}}"></script>

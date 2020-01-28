@@ -21,3 +21,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-user')->group(function (){
     Route::resource('/users', 'UserController', ['except'=> ['show', 'create', 'store']]);
 });
+
+Route::get('/posts','PostController@index')->name('posts');
+Route::get('/posts/create','PostController@create')->name('post.create');
+Route::post('/posts/create','PostController@store')->name('post.store');
+Route::get('/posts/{post}/edit','PostController@edit')->name('posts.edit');
+Route::put('/posts/{post}','PostController@update')->name('posts.update');
+Route::delete('/posts/{post}','PostController@destroy')->name('posts.delete');
