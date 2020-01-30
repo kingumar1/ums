@@ -1,10 +1,10 @@
 @extends('layouts.base')
-@section('title', 'All Posts')
+@section('title', 'All Categories')
 @section('base-content')
     <div class="row">
         <div class="col-sm-12">
             <div class="page-title-box">
-                <h4 class="page-title">Posts</h4>
+                <h4 class="page-title">Categories</h4>
             </div><!--end page-title-box-->
         </div><!--end col-->
     </div>
@@ -21,28 +21,26 @@
                         <table class="table table-hover mb-0">
                             <thead>
                             <tr>
-                                <th>Title</th>
-                                <th>Author</th>
-                                <th>Category</th>
+                                <th>#</th>
+                                <th>Name</th>
                                 <th>Date</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse($posts as $post)
+                            @forelse($cats as $cat)
                                 <tr>
-                                    <td>{{$post->title}}</td>
-                                    <td>{{$post->user->name}}</td>
-                                    <td>{{$post->category->name}}</td>
-                                    <td>{{$post->created_at->toDateString()}}</td>
+                                    <td>{{$loop->index +1}}</td>
+                                    <td>{{$cat->name}}</td>
+                                    <td>{{$cat->created_at->toDateString()}}</td>
                                     <td>
                                         @can('edit-user')
-                                            <a href="{{route('posts.edit',$post->id)}}"class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                            <a href="{{route('category.edit',$cat->id)}}"class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
                                         @endcan
                                         @can('delete-user')
                                             <a href="#" onclick="event.preventDefault();
-                                                     document.getElementById('delete-user-form-{{$post->id}}').submit();"><i class="fas fa-trash-alt text-danger font-16"></i></a>
-                                            <form id="delete-user-form-{{$post->id}}" action="{{route('posts.delete',$post->id)}}" method="post" class="float-left">
+                                                document.getElementById('delete-user-form-{{$cat->id}}').submit();"><i class="fas fa-trash-alt text-danger font-16"></i></a>
+                                            <form id="delete-user-form-{{$cat->id}}" action="{{route('category.delete',$cat->id)}}" method="post" class="float-left">
                                                 @method('DELETE')
                                                 @csrf
                                             </form>
@@ -50,7 +48,7 @@
                                     </td>
                                 </tr>
                             @empty
-                                <p>No Users</p>
+                                <p>No Categories are currently available</p>
                             @endforelse
                             </tbody>
                         </table><!--end /table-->
@@ -58,7 +56,7 @@
                 </div><!--end card-body-->
             </div><!--end card-->
         </div> <!-- end col -->
-    <div class="center">
-        {{$posts->links()}}
-    </div>
+        <div class="center">
+            {{$cats->links()}}
+        </div>
 @endsection

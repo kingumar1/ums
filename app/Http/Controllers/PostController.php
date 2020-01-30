@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,8 @@ class PostController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['only' => 'create']);
+//        $this->middleware('auth', ['only' => 'create']);
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -31,7 +33,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('post.create');
+        $cats = Category::all();
+        return view('post.create', compact('cats'));
     }
 
     /**
@@ -42,7 +45,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate(['title'=>'required', 'content'=>'required']);
+        $data = $request->validate(['title'=>'required','category_id'=>'required' , 'content'=>'required']);
         $post = Auth::user()->posts()->create($data);
         return redirect(route('posts'));
     }
@@ -55,7 +58,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('post.show', compact('post'));
     }
 
     /**
@@ -66,7 +69,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('post.edit', compact('post'));
+        $cats = Category::all();
+        return view('post.edit', compact(['post','cats']));
     }
 
     /**
@@ -93,5 +97,14 @@ class PostController extends Controller
     {
         $post->delete();
         return redirect(route('posts'));
+    }
+
+    public function uploadImage(Request $request)
+    {
+        $file=$request->file('file');
+
+        $path= url('/post/images').'/'.$file->getClientOriginalName();
+        $imgpath=$file->move(public_path('/post/images'),$file->getClientOriginalName());
+        return json_encode(['location' => $path]);
     }
 }

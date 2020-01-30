@@ -10,6 +10,7 @@ $(document).ready(function () {
           selector: "textarea#elm1",
           theme: "modern",
           height:300,
+          menubar: '',
           plugins: [
               "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
               "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",

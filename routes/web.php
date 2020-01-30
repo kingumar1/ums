@@ -28,3 +28,13 @@ Route::post('/posts/create','PostController@store')->name('post.store');
 Route::get('/posts/{post}/edit','PostController@edit')->name('posts.edit');
 Route::put('/posts/{post}','PostController@update')->name('posts.update');
 Route::delete('/posts/{post}','PostController@destroy')->name('posts.delete');
+Route::get('/posts/{post}','PostController@show')->name('post.show');
+
+Route::get('/categories','CategoryController@index')->name('categories');
+Route::get('/categories/create','CategoryController@create')->name('category.create');
+Route::post('/categories/create','CategoryController@store')->name('category.store');
+Route::get('/categories/{category}/edit','CategoryController@edit')->name('category.edit');
+Route::put('/categories/{category}','CategoryController@update')->name('category.update');
+Route::delete('/categories/{category}','CategoryController@destroy')->name('category.delete');
+
+Route::post('/post/image/', 'PostController@uploadImage')->name('post.image.upload');
