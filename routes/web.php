@@ -38,3 +38,6 @@ Route::put('/categories/{category}','CategoryController@update')->name('category
 Route::delete('/categories/{category}','CategoryController@destroy')->name('category.delete');
 
 Route::post('/post/image/', 'PostController@uploadImage')->name('post.image.upload');
+
+// comment routes
+Route::post('/posts/{post}/comment', 'CommentController@store')->name('comment.store');

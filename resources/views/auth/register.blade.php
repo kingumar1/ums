@@ -37,6 +37,7 @@
                                 </div><!--end form-group-->
 
                                 <div class="form-group">
+                                    @csrf
                                     <label for="email">Email</label>
                                     <div class="input-group mb-3">
                                             <span class="auth-form-icon">

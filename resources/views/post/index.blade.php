@@ -25,6 +25,7 @@
                                 <th>Author</th>
                                 <th>Category</th>
                                 <th>Date</th>
+                                <th>View</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -35,11 +36,12 @@
                                     <td>{{$post->user->name}}</td>
                                     <td>{{$post->category->name}}</td>
                                     <td>{{$post->created_at->toDateString()}}</td>
+                                    <td><a href="{{route('post.show',$post->id)}}"><i style="font-size: 17px" class="typcn typcn-eye"></i></a></td>
                                     <td>
-                                        @can('edit-user')
+                                        @can('edit-post',$post->id)
                                             <a href="{{route('posts.edit',$post->id)}}"class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
                                         @endcan
-                                        @can('delete-user')
+                                        @can('edit-post',$post->id)
                                             <a href="#" onclick="event.preventDefault();
                                                      document.getElementById('delete-user-form-{{$post->id}}').submit();"><i class="fas fa-trash-alt text-danger font-16"></i></a>
                                             <form id="delete-user-form-{{$post->id}}" action="{{route('posts.delete',$post->id)}}" method="post" class="float-left">
@@ -58,7 +60,8 @@
                 </div><!--end card-body-->
             </div><!--end card-->
         </div> <!-- end col -->
-    <div class="center">
-        {{$posts->links()}}
+        <div class="center">
+            {{$posts->links()}}
+        </div>
     </div>
 @endsection
